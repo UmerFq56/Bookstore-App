@@ -1,44 +1,25 @@
-const mongo = require('mongoose');
-const express = require('express');
-const Book = require('./schema')
+const express = require('express')
+const router = express.Router()
 
-const app = express();
+router.get('/' , (req, res) => {
+        res.send('Get All Books')
+    })    
 
-app.get('/home',(req,res) => {
-    res.send("Dev Start")
+router.get('/:id' , (req,res) => {
+    res.json({mssg: 'GET a  book'})
 })
 
-app.get('/find')
+router.post('/', (req,res) => {
+    res.json({mssg: 'POST a  book'})
+})
 
-app.get('/update-record')
+router.delete('/:id', (req,res) => {
+    res.json({mssg: 'DELETE a  book'})
+})
+
+router.patch('/:id', (req,res) => {
+    res.json({mssg: 'UPDATE a book'})
+})
 
 
-
-const dbUrl = 'mongodb+srv://UmerFarooqui:RealMadrid14@cluster0.vbtnfad.mongodb.net/Bookstore?retryWrites=true&w=majority&appName=Cluster0';
-mongo.connect(dbUrl)
-    .then((result) => {
-        console.log('connected to mongo')
-        app.listen(3000);
-    })
-    .catch((err) => {
-        console.log(err)
-    });
-
-// const newBook = new Book({
-//     title: 'Harry Potter and the Goblet of Fire',
-//     author: 'JK Rowling',
-//     rating: 9,
-//     pages: 370,
-//     genres: ['Fantasy'],
-//     review : {
-//         name: 'Umer Farooqui',
-//         body: 'Very Good Book'
-//     }
-
-// })
-
-// newBook.save()
-//     .then((result) => {
-//         console.log(result)
-//     })
-//     .catch((err) => console.log(err));
+module.exports = router;
