@@ -9,7 +9,9 @@ const dbUrl = 'mongodb+srv://UmerFarooqui:RealMadrid14@cluster0.vbtnfad.mongodb.
 mongo.connect(dbUrl)
     .then((result) => {
         console.log('connected to mongo')
-        app.listen(3000);
+        app.listen(4000, () => {
+            console.log('Listening on Port 4000')
+        });
     })
     .catch((err) => {
         console.log(err)
@@ -22,15 +24,15 @@ app.use((req, res, next) => {
 
 app.use(Routes)
 // const newBook = new Book({
-//     title: 'Harry Potter and the Goblet of Fire',
-//     author: 'JK Rowling',
-//     rating: 9,
-//     pages: 370,
-//     genres: ['Fantasy'],
-//     review : {
-//         name: 'Umer Farooqui',
-//         body: 'Very Good Book'
-//     }
+    // title: 'Harry Potter and the Goblet of Fire',
+    // author: 'JK Rowling',
+    // rating: 9,
+    // pages: 370,
+    // genres: ['Fantasy'],
+    // review : {
+    //     name: 'Umer Farooqui',
+    //     body: 'Very Good Book'
+    // }
 
 // })
 
