@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     next()
 })    
 
-app.use(Routes)
+app.use('/api',Routes)
 // const newBook = new Book({
     // title: 'Harry Potter and the Goblet of Fire',
     // author: 'JK Rowling',
