@@ -3,7 +3,7 @@ const Navbar = () => {
     return (
         <header>
             <div className="container">
-                <Link to= '/'>
+                <Link className='link' to= '/'>
                 <h1>Library Record Maintenance</h1>
                 </Link>
             </div>

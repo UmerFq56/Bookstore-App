@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgba(185, 223, 234, 0.674);
+}
+
+.books-details {
+    margin-bottom: 10px;
+
+
+}
+.link {
+    text-decoration: none;
+    color: black;
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+}
+
+.title {
+    margin-bottom: 5px;
+}
