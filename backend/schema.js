@@ -13,7 +13,7 @@ const bookSchema = new Schema({
     author: {type: String, required: true},
     rating: {type: Number, required: true},
     pages: {type: Number, required: true},
-    genres: [{type: String, required: true}],
+    genres: {type: Array, required: true},
     review: bS_reviews
 }, {timestamps: true});
 

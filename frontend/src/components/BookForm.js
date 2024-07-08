@@ -1,93 +1,93 @@
-import { useState } from "react"
+import { useState } from "react";
 
- const BookForm = () => {
+const BookForm = () => {
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [rating, setRating] = useState('');
+  const [pages, setPages] = useState('');
+  const [genres, setGenre] = useState([]);
+  const [currentGenre, setCurrentGenre] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleGenre = (e) => {
+    e.preventDefault();
     
-    const [Title, setTitle] = useState('')
-    const [Author, setAuthor] = useState('')
-    const [Rating, setRating] = useState('')
-    const [Pages, SetPages] = useState('')
-    const [Genre, SetGenre] = useState([])
-    const [currentGenre, SetCurrentGenre] = useState('')
-    const [error, Seterror] = useState(null)
+    setGenre([...genres, currentGenre]);
+    setCurrentGenre('');
+  };
 
-    const handleGenre = () => {
-        if (currentGenre.trim() != '') {
-            SetGenre([...Genre, currentGenre.trim()])
-            SetCurrentGenre('')
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+   
+    const book = { title, author, rating, pages, genres};
+    const response = await fetch('/api', {
+      method: 'POST',
+      body: JSON.stringify(book),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    } else {
+      setError(null);
+      setTitle('');
+      setAuthor('');
+      setRating('');
+      setPages('');
+      setGenre([]);
+      console.log('Book Added');
     }
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const Book = {Title, Author, Rating, Pages, Genre}
-        const response = await fetch('/api', {
-            method: 'POST',
-            body: JSON.stringify(Book),
-            headers: {
-                'Content-Type' : 'appliation/json'
-            } 
-        })
+  return (
+    <form className="create" onSubmit={handleSubmit}>
+      <h3>Add a new Book</h3>
+      <label>Book Title: </label>
+      <input
+        type="text"
+        onChange={(e) => setTitle(e.target.value)}
+        value={title}
+      />
 
-        const jsn = await response.json()
+      <label>Author: </label>
+      <input
+        type="text"
+        onChange={(e) => setAuthor(e.target.value)}
+        value={author}
+      />
 
-        if (!response.ok) {
-            Seterror(jsn.error)
-        }
+      <label>Rating: </label>
+      <input
+        type="text"
+        onChange={(e) => setRating(e.target.value)}
+        value={rating}
+      />
 
-        if (response.ok) {
-            Seterror(null)
-            setTitle('')
-            setAuthor('')
-            setRating('')
-            SetPages('')
-            SetGenre([])
-        }
+      <label>Pages: </label>
+      <input
+        type="text"
+        onChange={(e) => setPages(e.target.value)}
+        value={pages}
+      />
 
-        console.log('Book Added')
-    }
+      <div className="genre-form">
+        <label>Genres: </label>
+        <input
+          type="text"
+          onChange={(e) => setCurrentGenre(e.target.value)}
+          value={currentGenre}
+        />
+        <button type="button" className="genreB" onClick={handleGenre}> Add Genre </button>
+      </div>
 
+      <button className="button"> Add Book</button>
+      {error && <div className="error">{error}</div>}
+    </form>
+  );
+};
 
-    return (
-        <form className="create" onSubmit={handleSubmit}>
-            <h3>Add a new Book</h3>
-            <label>Book Title: </label>
-            <input
-            type="text"
-            onChange={(e) => setTitle(e.target.value)}
-            value={Title}
-            />
-
-            <label>Author: </label>
-            <input
-            type="text"
-            onChange={(e) => setAuthor(e.target.value)}
-            value={Author}
-            />
-
-            <label>Rating: </label>
-            <input
-            type="text"
-            onChange={(e) => setRating(e.target.value)}
-            value={Rating}
-            />
-
-            <label>Pages: </label>
-            <input
-            type="text"
-            onChange={(e) => SetPages(e.target.value)}
-            value={Pages}
-            />
-
-            <label>Genres: </label>
-            <input
-            type="text"
-            onChange={(e) => SetCurrentGenre(e.target.value)}
-            value={currentGenre}
-            />
-            <button className="genreB" onClick={handleGenre}> Add Genre </button>
-            
-        </form>
-    )
- }
-
- export default BookForm;
+export default BookForm;
