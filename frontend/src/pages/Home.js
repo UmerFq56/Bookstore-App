@@ -38,7 +38,7 @@ const Home = () => {
 
             </div>
 
-            <BookForm/>
+            <BookForm books = {Books} setBooks = {setBooks} />
             
         </div>
     )

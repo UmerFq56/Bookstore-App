@@ -5,7 +5,7 @@ const Routes = require('./backend-routes')
 
 const app = express();
 
-const dbUrl = 'mongodb+srv://UmerFarooqui:RealMadrid14@cluster0.vbtnfad.mongodb.net/Bookstore?retryWrites=true&w=majority&appName=Cluster0';
+const dbUrl = 'mongodb+srv://UmerFarooqui:RealMadrid123Canon@cluster0.vbtnfad.mongodb.net/Bookstore?retryWrites=true&w=majority&appName=Cluster0';
 mongo.connect(dbUrl)
     .then((result) => {
         console.log('connected to mongo')

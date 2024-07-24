@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const BookForm = () => {
+const BookForm = ({books, setBooks}) => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [rating, setRating] = useState('');
@@ -39,6 +39,9 @@ const BookForm = () => {
       setRating('');
       setPages('');
       setGenre([]);
+      setBooks([...books, json]);
+
+
       console.log('Book Added');
     }
   };
