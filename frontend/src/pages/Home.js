@@ -22,6 +22,10 @@ const Home = () => {
 
     },[])
 
+    const handleDelete = (id) => {
+        setBooks((prevBooks) => prevBooks.filter(book => book._id !== id))
+    }
+
     
 
 
@@ -33,12 +37,12 @@ const Home = () => {
             <div className='books'>
                 
                 {Books && Books.map((book) => (
-                    <BookDetails key={book._id} book = {book} />
+                    <BookDetails key={book._id} book = {book} onDelete = {handleDelete} />
                 ))}
 
             </div>
 
-            <BookForm books = {Books} setBooks = {setBooks} />
+            <BookForm books = {Books} setBooks = {setBooks}  />
             
         </div>
     )

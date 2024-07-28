@@ -1,4 +1,15 @@
-const BookDetails = ({book}) => {
+const BookDetails = ({book, onDelete}) => {
+
+    const handleDelete =  async () => {
+        const response = await fetch('/api/' + book._id, {
+            method: 'DELETE'
+        }) 
+
+        if (response.ok) {
+            onDelete(book._id);
+        }
+    }
+
     return (
         <div className="books-details">
             <h4 className="title">{book.title}</h4>
@@ -8,7 +19,7 @@ const BookDetails = ({book}) => {
             <p><strong>Genre: </strong> {book.genres.map((genre,index) => (
                 <span  key={index}>{genre} </span>
             ))}</p>
-
+            <button type="button" className="DeleteButton" onClick={handleDelete}>Delete</button>
 
         </div>
     )
