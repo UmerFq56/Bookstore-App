@@ -15,8 +15,17 @@
     color: black;
     font-family: "Oswald", sans-serif;
     font-weight: 600;
+    margin-right: 10px;
+
 }
 
 .title {
     margin-bottom: 5px;
 }
+
+.linkc {
+    display: flex;
+    align-items: baseline;
+
+}
+

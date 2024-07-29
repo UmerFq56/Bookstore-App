@@ -17,5 +17,17 @@ const bookSchema = new Schema({
     review: bS_reviews
 }, {timestamps: true});
 
+const userSchema = new Schema({
+    fullName: {type: String, required: true},
+    username: {type: String, required: true},
+    password: {type: String, required: true},
+    repeatPassword: {type: String, required: true}
+})
+
 const Book = mongoose.model('book', bookSchema);
-module.exports = Book;
+const User = mongoose.model('user', userSchema);
+
+
+module.exports = {
+    Book,User
+}

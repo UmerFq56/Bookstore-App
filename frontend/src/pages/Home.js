@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import BookDetails from '../components/BookDetails'
-import BookForm  from '../components/BookForm';
 
 const Home = () => {
     const [Books, setBooks] = useState(null)
@@ -41,8 +40,6 @@ const Home = () => {
                 ))}
 
             </div>
-
-            <BookForm books = {Books} setBooks = {setBooks}  />
             
         </div>
     )
