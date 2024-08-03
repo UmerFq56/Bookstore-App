@@ -1,4 +1,4 @@
- const Book = require('./schema')
+ const {Book} = require('./schema')
  const mongoose = require('mongoose')
 
 
@@ -37,7 +37,7 @@
             res.status(200).json(book)
 
     } catch (error) {
-        res.status(400).json({error: error.message })
+        res.status(400).json({error: 'no' })
     }
  }
 

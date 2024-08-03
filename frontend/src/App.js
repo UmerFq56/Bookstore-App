@@ -1,14 +1,24 @@
-import {BrowserRouter, Routes, Route, } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react';
-
-
 import Home from './pages/Home'
 import Navbar from './components/navbar'
 import BookForm from './components/BookForm';
+import LoginForm from './components/LoginForm'
+import SignupForm from './components/SignUpForm';
+import { useAuth } from './authContext';
+
 
 function App() {
 
   const [Books, setBooks] = useState(null)
+  const {loggedIn} = useAuth()
+
+  const NavBar = () => {
+    const shouldRenderNavbar = loggedIn
+    return shouldRenderNavbar && <Navbar />;
+
+  }
+
     
   useEffect(() => {
       const fetchBooks = async () => {
@@ -29,12 +39,21 @@ function App() {
   return (
 
     <div className="App">
-      <BrowserRouter>
-        <Navbar/>
+      
+
+      <NavBar />
         <div className='pages'>
-          <Routes>
+
+        
+       
+      <Routes>
+
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/register" element={<SignupForm />} />
+
             <Route
-              path='/'
+              path='/home'
               element={<Home  />}
             />
 
@@ -47,10 +66,8 @@ function App() {
               path='/books'
               element={<Home />}
             />
-          </Routes>
+        </Routes>
         </div>
-      </BrowserRouter>
-      
     </div>
   );
 }
